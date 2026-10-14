@@ -33,7 +33,7 @@ public class MealService {
         mealItemJdbcRepository.addDailyItem(
                 userId,
                 request.mealDate(),
-                request.mealName(),
+                request.mealName().trim(),
                 request.foodId(),
                 request.quantityGrams()
         );
@@ -118,23 +118,26 @@ public class MealService {
                 userId,
                 mealId,
                 request.mealDate(),
-                request.mealName()
+                request.mealName().trim()
         );
     }
 
     @Transactional
     public void copyDailyMeal(Integer userId, CopyMealRequest request) {
+        String sourceMealName = request.sourceMealName().trim();
+        String targetMealName = request.targetMealName().trim();
+
         if (request.sourceDate().equals(request.targetDate())
-            && request.sourceMealName().equals(request.targetMealName())) {
+            && sourceMealName.equals(targetMealName)) {
             throw new IllegalArgumentException("Source and target meal cannot be the same.");
         }
 
         mealJdbcRepository.copyDailyMeal(
                 userId,
                 request.sourceDate(),
-                request.sourceMealName(),
+                sourceMealName,
                 request.targetDate(),
-                request.targetMealName()
+                targetMealName
         );
     }
 
@@ -142,7 +145,7 @@ public class MealService {
         return mealJdbcRepository.existsDailyMealItems(
                 userId,
                 mealDate,
-                mealName
+                mealName.trim()
         );
     }
 }

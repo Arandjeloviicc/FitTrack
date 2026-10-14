@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.Optional;
 public class BodyMeasurementJdbcRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private final Clock clock;
 
     public Optional<LatestBodyMeasurement> findLatestByUserId(Integer userId) {
         String sql = """
@@ -98,7 +100,7 @@ public class BodyMeasurementJdbcRepository {
     }
 
     public CreateBodyMeasurementResult create(Integer userId, BodyMeasurementRequest request) {
-        ZoneId zoneId = ZoneId.systemDefault();
+        ZoneId zoneId = clock.getZone();
 
         LocalDate loggedDate = request.loggedAt()
                 .atZone(zoneId)
@@ -253,7 +255,7 @@ public class BodyMeasurementJdbcRepository {
     }
 
     public UpdateBodyMeasurementResult update(Integer measurementId, Integer userId, BodyMeasurementRequest request) {
-        ZoneId zoneId = ZoneId.systemDefault();
+        ZoneId zoneId = clock.getZone();
 
         LocalDate loggedDate = request.loggedAt()
                 .atZone(zoneId)
@@ -428,11 +430,9 @@ public class BodyMeasurementJdbcRepository {
         //          plus was_latest flag da se zna da li se briše baš trenutno najnoviji unos korisnika
         // deleted - ako target ima red, DELETE ... USING target t briše taj tačno jedan red
         //           i RETURNING vraća njegov id i was_latest; ako target nema red, DELETE ne pogađa ništa i deleted ostaje prazan (0 redova), bez ijedne greške
-        // SELECT - EXISTS(...) pretvara "ima li reda u deleted" u pravi boolean (true/false),
-        //          umesto da se oslanja na broj vraćenih redova; COALESCE(..., FALSE) hvata slučaj
-        //          kad deleted nema nijedan red (ništa obrisano) tako da se was_latest ne izvlači iz praznog podupita kao null,
-        //          nego dobija bezbedan default FALSE - ovo je i razlog zašto ova metoda uvek vraća tačno jedan red
-        //          (queryForObject umesto stream().findFirst()), za razliku od update() koji legitimno može da vrati "nema rezultata"
+        // SELECT - EXISTS(...) pretvara "ima li reda u deleted" u boolean,
+        //          a COALESCE(..., FALSE) vraća FALSE za was_latest kada ništa nije obrisano;
+        //          SELECT uvek vraća tačno jedan red, pa se koristi queryForObject()
 
         String sql = """
             WITH target AS (

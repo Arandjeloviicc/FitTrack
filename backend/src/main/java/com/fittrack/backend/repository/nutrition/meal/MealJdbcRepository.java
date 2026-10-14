@@ -7,7 +7,7 @@ import com.fittrack.backend.dto.nutrition.meal.item.MealItemResponse;
 import com.fittrack.backend.dto.nutrition.meal.item.UpdateSavedMealItemRequest;
 import com.fittrack.backend.domain.nutrition.MealKind;
 import com.fittrack.backend.exception.ResourceNotFoundException;
-import com.fittrack.backend.repository.nutrition.meal.item.projection.CreateSavedMealResult;
+import com.fittrack.backend.repository.nutrition.meal.projection.CreateSavedMealResult;
 import com.fittrack.backend.repository.nutrition.meal.projection.UpdateSavedMealResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -772,7 +772,7 @@ public class MealJdbcRepository {
     // ── Log ───────────────────────────────────────────────────────
     public void logSavedMeal(Integer userId, Integer savedMealId, LocalDate targetDate, String targetMealName) {
         // source_meal - nalazi saved meal koji se dodaje u daily meal
-        // existing_target - proverava da li cilji daily obrok postoji vec u bazi
+        // existing_target - proverava da li ciljni daily obrok postoji vec u bazi
         // inserted_target - ako ciljni daily obrok ne postoji, kreira se i vraca se njegov id
         // target_meal - spaja existing i inserted jer je jedan uvek prazan
         // INSERT - kopira sve iteme iz saved obroka u ciljni daily obrok koristeci vrednosti iz source_meal da ne bi ponovo trazio po id, ako je source meal prazan, nista se ne kopira
@@ -879,7 +879,7 @@ public class MealJdbcRepository {
     // ── Copy ───────────────────────────────────────────────────────
     public void copyDailyMeal(Integer userId, LocalDate sourceDate, String sourceMealName, LocalDate targetDate, String targetMealName) {
         // source_meal - nalazi meal koji se menja
-        // existing_target - proverava da li cilji obrok postoji vec u bazi
+        // existing_target - proverava da li ciljni obrok postoji vec u bazi
         // inserted_target - ako ciljni obrok ne postoji, kreira se i vraca se njegov id
         // target_meal - spaja existing i inserted jer je jedan uvek prazan
         // INSERT - kopira sve iteme iz izvornog obroka u ciljni obrok koristeci vrednosti iz source_meal da ne bi ponovo trazio po id, ako je source meal prazan, nista se ne kopira

@@ -5,6 +5,7 @@ import com.fittrack.backend.dto.profile.editor.NutritionGoalUpdateRequest;
 import com.fittrack.backend.domain.profile.ActivityLevel;
 import com.fittrack.backend.domain.profile.Gender;
 import com.fittrack.backend.domain.profile.WeightGoal;
+import com.fittrack.backend.repository.nutrition.goal.projection.NutritionGoalRecalculationData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

@@ -5,7 +5,7 @@ import com.fittrack.backend.dto.profile.editor.NutritionGoalUpdateRequest;
 import com.fittrack.backend.exception.ConflictException;
 import com.fittrack.backend.exception.ResourceNotFoundException;
 import com.fittrack.backend.repository.nutrition.goal.NutritionGoalJdbcRepository;
-import com.fittrack.backend.repository.nutrition.goal.NutritionGoalRecalculationData;
+import com.fittrack.backend.repository.nutrition.goal.projection.NutritionGoalRecalculationData;
 import com.fittrack.backend.service.calculation.NutritionGoalCalculationService;
 import com.fittrack.backend.service.measurements.BodyFatService;
 import lombok.RequiredArgsConstructor;

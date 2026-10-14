@@ -17,8 +17,8 @@ public class MealItemJdbcRepository {
 
     // ── Daily Meal Item Operations ────────────────────────────────────
     public void addDailyItem(Integer userId, LocalDate mealDate, String mealName, Integer foodId, double quantityGrams) {
-        // valid_context - proverava da korisnik postoji i da hrana postoji, kao i kome hrana pripada
-        // existing_target - proverava da li cilji obrok postoji vec u bazi
+        // valid_context - proverava da korisnik i hrana postoje i uzima podatke o hrani
+        // existing_target - proverava da li ciljni obrok postoji vec u bazi
         // inserted_target - ako ciljni obrok ne postoji, kreira se i vraca se njegov id
         // target_meal - spaja existing i inserted jer je jedan uvek prazan
         // INSERT - dodaje novu stavku u meal_items, koristi podatke iz valid_context da ne bi morao ponovo da trazi po food_id
@@ -131,11 +131,11 @@ public class MealItemJdbcRepository {
 
     public Optional<MealItemResponse> updateDailyItem(Integer userId, Integer mealItemId, String targetMealName, double quantityGrams) {
         // source_meal - nalazi meal koji se menja
-        // existing_target - proverava da li cilji obrok postoji vec u bazi
+        // existing_target - proverava da li ciljni obrok postoji vec u bazi
         // inserted_target - ako ciljni obrok ne postoji, kreira se i vraca se njegov id
         // target_meal - spaja existing i inserted jer je jedan uvek prazan
         // UPDATE - azurira stavku
-        // RETURNING - odamh vraca azurirane vrednosti bez dodatnog selecta (Specificno za PostgreSQL)
+        // RETURNING - odmah vraca azurirane vrednosti bez dodatnog selecta (Specificno za PostgreSQL)
 
         String sql = """
             WITH source_meal AS (

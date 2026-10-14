@@ -25,7 +25,7 @@ public class NutritionGoalCalculationService {
     // ── Nutrition Targets ─────────────────────────────────────────────────
     public NutritionTargets calculate(int age, Gender gender, double heightCm, double weightKg, Double bodyFatPercentage, ActivityLevel activityLevel, WeightGoal goalType, Double weeklyGoal) {
         if (bodyFatPercentage != null && (bodyFatPercentage < 2 || bodyFatPercentage > 70)) {
-            throw new IllegalArgumentException("Body fat percentage must be between 0 and 100.");
+            throw new IllegalArgumentException("Body fat percentage must be between 2 and 70.");
         }
 
         double bmr = calculateBmr(

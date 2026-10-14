@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.List;
 public class WeightLogJdbcRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private final Clock clock;
 
     public WeightHistoryResponse findHistoryByUserId(Integer userId) {
         // ng - za svaki red iz weight_logs izvlaci goal_type aktivnog cilja (end_date IS NULL)
@@ -74,7 +76,7 @@ public class WeightLogJdbcRepository {
     }
 
     public CreateWeightLogResult create(Integer userId, WeightLogRequest request) {
-        ZoneId zoneId = ZoneId.systemDefault();
+        ZoneId zoneId = clock.getZone();
 
         LocalDate loggedDate = request.loggedAt()
                 .atZone(zoneId)
@@ -209,7 +211,7 @@ public class WeightLogJdbcRepository {
     }
 
     public UpdateWeightLogResult update(Integer weightLogId, Integer userId, WeightLogRequest request) {
-        ZoneId zoneId = ZoneId.systemDefault();
+        ZoneId zoneId = clock.getZone();
 
         LocalDate loggedDate = request.loggedAt()
                 .atZone(zoneId)

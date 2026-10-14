@@ -1,4 +1,4 @@
-package com.fittrack.backend.repository.nutrition.goal;
+package com.fittrack.backend.repository.nutrition.goal.projection;
 
 import com.fittrack.backend.domain.profile.ActivityLevel;
 import com.fittrack.backend.domain.profile.Gender;

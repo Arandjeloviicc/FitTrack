@@ -27,7 +27,7 @@ public class ProfileSetupService {
     public void completeProfile(ProfileSetupRequest request) {
         LocalDate today = LocalDate.now(clock);
 
-        int age = validateProfileSetup(request);
+        int age = validateProfileSetup(request, today);
 
         NutritionTargets targets =
                 nutritionGoalCalculationService.calculate(
@@ -44,9 +44,7 @@ public class ProfileSetupService {
         profileSetupJdbcRepository.completeProfile(request, targets, today);
     }
 
-    private int validateProfileSetup(ProfileSetupRequest request) {
-        LocalDate today = LocalDate.now(clock);
-
+    private int validateProfileSetup(ProfileSetupRequest request, LocalDate today) {
         int age = profileValidationService.validateAge(request.dateOfBirth(), today);
 
         nutritionGoalValidationService.validate(

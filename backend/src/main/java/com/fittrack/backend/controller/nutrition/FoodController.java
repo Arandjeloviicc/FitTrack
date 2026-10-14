@@ -18,7 +18,7 @@ public class FoodController {
     private final FoodService foodService;
 
     @GetMapping
-    public List<FoodResponse> searchFoods(@RequestParam String search) {
+    public List<FoodResponse> searchFoods(@RequestParam(defaultValue = "") String search) {
         return foodService.searchFoods(search);
     }
 

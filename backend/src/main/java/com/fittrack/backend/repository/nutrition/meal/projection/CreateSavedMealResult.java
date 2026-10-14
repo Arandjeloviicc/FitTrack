@@ -1,4 +1,4 @@
-package com.fittrack.backend.repository.nutrition.meal.item.projection;
+package com.fittrack.backend.repository.nutrition.meal.projection;
 
 public record CreateSavedMealResult(
         boolean userExists,
