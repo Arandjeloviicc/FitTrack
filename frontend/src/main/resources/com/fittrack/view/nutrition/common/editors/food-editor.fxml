@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import com.fittrack.ui.control.DecimalTextField?>
 
 <StackPane fx:id="rootLayout"
            xmlns="http://javafx.com/javafx/22"
@@ -79,10 +80,10 @@
                 <Label text="Serving size (g)"
                        styleClass="field-label"/>
 
-                <TextField fx:id="servingSizeField"
-                           maxWidth="Infinity"
-                           promptText="e.g. 100"
-                           styleClass="input-field, text-field"/>
+                <DecimalTextField fx:id="servingSizeField"
+                                  maxWidth="Infinity"
+                                  promptText="e.g. 100"
+                                  styleClass="input-field, text-field"/>
 
                 <Label fx:id="servingSizeMessage"
                        styleClass="helper-label"
@@ -104,10 +105,10 @@
                     <Label text="Calories"
                            styleClass="field-label"/>
 
-                    <TextField fx:id="caloriesField"
-                               promptText="e.g. 150"
-                               maxWidth="Infinity"
-                               styleClass="input-field, text-field"/>
+                    <DecimalTextField fx:id="caloriesField"
+                                      promptText="e.g. 150"
+                                      maxWidth="Infinity"
+                                      styleClass="input-field, text-field"/>
 
                     <Label fx:id="caloriesMessage"
                            styleClass="helper-label"
@@ -122,10 +123,10 @@
                     <Label text="Carbs (g)"
                            styleClass="field-label"/>
 
-                    <TextField fx:id="carbsField"
-                               promptText="e.g. 20"
-                               maxWidth="Infinity"
-                               styleClass="input-field, text-field"/>
+                    <DecimalTextField fx:id="carbsField"
+                                      promptText="e.g. 20"
+                                      maxWidth="Infinity"
+                                      styleClass="input-field, text-field"/>
 
                     <Label fx:id="carbsMessage"
                            styleClass="helper-label"
@@ -144,10 +145,10 @@
                     <Label text="Fat (g)"
                            styleClass="field-label"/>
 
-                    <TextField fx:id="fatField"
-                               promptText="e.g. 5"
-                               maxWidth="Infinity"
-                               styleClass="input-field, text-field"/>
+                    <DecimalTextField fx:id="fatField"
+                                      promptText="e.g. 5"
+                                      maxWidth="Infinity"
+                                      styleClass="input-field, text-field"/>
 
                     <Label fx:id="fatMessage"
                            styleClass="helper-label"
@@ -162,10 +163,10 @@
                     <Label text="Protein (g)"
                            styleClass="field-label"/>
 
-                    <TextField fx:id="proteinField"
-                               promptText="e.g. 8"
-                               maxWidth="Infinity"
-                               styleClass="input-field, text-field"/>
+                    <DecimalTextField fx:id="proteinField"
+                                      promptText="e.g. 8"
+                                      maxWidth="Infinity"
+                                      styleClass="input-field, text-field"/>
 
                     <Label fx:id="proteinMessage"
                            styleClass="helper-label"

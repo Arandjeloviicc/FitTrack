@@ -1,6 +1,6 @@
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.TextField?>
+<?import com.fittrack.ui.control.DecimalTextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -73,10 +73,10 @@
                 <Label text="Number of servings"
                        styleClass="field-label"/>
 
-                <TextField fx:id="servingsField"
-                           promptText="Enter a number of servings"
-                           maxWidth="Infinity"
-                           styleClass="input-field, text-field"/>
+                <DecimalTextField fx:id="servingsField"
+                                  promptText="Enter a number of servings"
+                                  maxWidth="Infinity"
+                                  styleClass="input-field, text-field"/>
 
                 <Label fx:id="servingsMessage"
                        styleClass="helper-label"
