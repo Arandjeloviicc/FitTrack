@@ -317,7 +317,7 @@ public class ProfilePersonalInfoEditorController extends FormController implemen
             return false;
         }
 
-        LocalDate latestAllowedDateOfBirth = LocalDate.now().minusYears(AppConstants.Validation.MIN_AGE);
+        LocalDate latestAllowedDateOfBirth = LocalDate.now(AppConstants.APP_TIME_ZONE).minusYears(AppConstants.Validation.MIN_AGE);
 
         if (dateOfBirth.isAfter(latestAllowedDateOfBirth)) {
             showDateOfBirthMessage(AppConstants.Messages.INVALID_DATE_OF_BIRTH_AGE_MESSAGE);
@@ -326,7 +326,7 @@ public class ProfilePersonalInfoEditorController extends FormController implemen
 
         int age = Period.between(
                 dateOfBirth,
-                LocalDate.now()
+                LocalDate.now(AppConstants.APP_TIME_ZONE)
         ).getYears();
 
         if (!FitnessInputValidator.isAgeValid(age)) {

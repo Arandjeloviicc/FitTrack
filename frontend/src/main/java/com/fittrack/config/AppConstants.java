@@ -1,8 +1,12 @@
 package com.fittrack.config;
 
+import java.time.ZoneId;
+
 public final class AppConstants {
 
     private AppConstants() {}
+
+    public static final ZoneId APP_TIME_ZONE = ZoneId.of("Europe/Belgrade");
 
     public static final class Views {
 
@@ -92,7 +96,7 @@ public final class AppConstants {
         public static final int MIN_NAME_LENGTH = 2;
         public static final int MAX_NAME_LENGTH = 50;
 
-        public static final int MIN_HEIGHT = 50;
+        public static final int MIN_HEIGHT = 100;
         public static final int MAX_HEIGHT = 250;
         public static final int MIN_WEIGHT = 30;
         public static final int MAX_WEIGHT = 300;
@@ -103,11 +107,11 @@ public final class AppConstants {
         public static final int WEIGHT_LOSS_CALORIE_DEFICIT = 500;
         public static final int WEIGHT_GAIN_CALORIE_SURPLUS = 300;
         public static final int MIN_NECK_CIRCUMFERENCE = 20;
-        public static final int MAX_NECK_CIRCUMFERENCE = 70;
+        public static final int MAX_NECK_CIRCUMFERENCE = 65;
         public static final int MIN_WAIST_CIRCUMFERENCE = 40;
-        public static final int MAX_WAIST_CIRCUMFERENCE = 250;
+        public static final int MAX_WAIST_CIRCUMFERENCE = 220;
         public static final int MIN_HIP_CIRCUMFERENCE = 50;
-        public static final int MAX_HIP_CIRCUMFERENCE = 250;
+        public static final int MAX_HIP_CIRCUMFERENCE = 220;
     }
 
     public static final class Messages {

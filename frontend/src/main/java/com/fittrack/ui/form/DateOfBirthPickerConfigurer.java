@@ -11,7 +11,7 @@ public final class DateOfBirthPickerConfigurer extends AppDatePickerConfigurer {
 
     public static void configure(DatePicker picker) {
         LocalDate latestAllowedDateOfBirth =
-                LocalDate.now()
+                LocalDate.now(AppConstants.APP_TIME_ZONE)
                         .minusYears(
                                 AppConstants.Validation.MIN_AGE
                         );

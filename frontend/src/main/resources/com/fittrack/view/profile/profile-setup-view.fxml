@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ComboBox?>
+<?import com.fittrack.ui.control.DecimalTextField?>
 
 <StackPane fx:id="rootLayout"
            styleClass="root"
@@ -196,10 +197,10 @@
                     <Label styleClass="field-label"
                            text="Height (cm)"/>
 
-                    <TextField fx:id="heightField"
-                               maxWidth="Infinity"
-                               promptText="Enter your height"
-                               styleClass="input-field,text-field"/>
+                    <DecimalTextField fx:id="heightField"
+                                      maxWidth="Infinity"
+                                      promptText="Enter your height"
+                                      styleClass="input-field,text-field"/>
 
                     <Label fx:id="heightMessage"
                            styleClass="helper-label"
@@ -212,10 +213,10 @@
                     <Label styleClass="field-label"
                            text="Weight (kg)"/>
 
-                    <TextField fx:id="weightField"
-                               maxWidth="Infinity"
-                               promptText="Enter your weight"
-                               styleClass="input-field,text-field"/>
+                    <DecimalTextField fx:id="weightField"
+                                      maxWidth="Infinity"
+                                      promptText="Enter your weight"
+                                      styleClass="input-field,text-field"/>
 
                     <Label fx:id="weightMessage"
                            styleClass="helper-label"
@@ -266,10 +267,10 @@
                         <Label styleClass="field-label"
                                text="Goal weight (kg)"/>
 
-                        <TextField fx:id="goalWeightField"
-                                   maxWidth="Infinity"
-                                   promptText="Enter your goal weight"
-                                   styleClass="input-field, text-field"/>
+                        <DecimalTextField fx:id="goalWeightField"
+                                          maxWidth="Infinity"
+                                          promptText="Enter your goal weight"
+                                          styleClass="input-field, text-field"/>
 
                         <Label fx:id="goalWeightMessage"
                                styleClass="helper-label"

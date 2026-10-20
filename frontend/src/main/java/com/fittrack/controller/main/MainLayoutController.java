@@ -138,12 +138,12 @@ public class MainLayoutController extends NavigableController implements Initial
         greetingLabel.setText("Hello, " + username);
 
         // List of all Sidebar buttons
-        navButtons = List.of(dashboardButton, mealsButton, measurementsButton, calculatorsButton, myFoodsButton, profileButton);
+        navButtons = List.of(mealsButton, measurementsButton, calculatorsButton, myFoodsButton, profileButton);
 
         // Default view - Dashboard
-        navigationGroup.selectToggle(dashboardButton);
+        navigationGroup.selectToggle(mealsButton);
 
-        currentView = AppConstants.Views.DASHBOARD;
+        currentView = AppConstants.Views.MEALS;
         loadContent(currentView);
     }
 
@@ -438,6 +438,10 @@ public class MainLayoutController extends NavigableController implements Initial
 
         if (AppConstants.Views.MEASUREMENTS.equals(currentView)) {
             return measurementsButton;
+        }
+
+        if (AppConstants.Views.MY_FOODS.equals(currentView)) {
+            return myFoodsButton;
         }
 
         if (AppConstants.Views.PROFILE.equals(currentView)) {

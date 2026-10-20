@@ -3,6 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.fittrack.ui.control.DecimalTextField?>
+
 <StackPane fx:id="rootLayout"
            xmlns="http://javafx.com/javafx/22"
            xmlns:fx="http://javafx.com/fxml/1"
@@ -102,10 +104,10 @@
                            styleClass="field-label"/>
 
                     <StackPane>
-                        <TextField fx:id="goalWeightField"
-                                   maxWidth="Infinity"
-                                   promptText="Optional"
-                                   styleClass="input-field, text-field, profile-nutrition-goal-weight-field"/>
+                        <DecimalTextField fx:id="goalWeightField"
+                                          maxWidth="Infinity"
+                                          promptText="Optional"
+                                          styleClass="input-field, text-field, profile-nutrition-goal-weight-field"/>
 
                         <Label text="kg"
                                mouseTransparent="true"

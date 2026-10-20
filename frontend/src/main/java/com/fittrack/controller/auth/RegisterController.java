@@ -131,6 +131,8 @@ public class RegisterController extends AuthFormController implements Initializa
             exception -> {
                 log.warn("Registration failed: {}", exception.getMessage());
 
+                showEmailMessage("Something went wrong while creating your account. Please try again.");
+
                 resetLoading(registerButton);
             }
         );

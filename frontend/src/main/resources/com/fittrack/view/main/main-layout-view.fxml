@@ -78,21 +78,6 @@
                 <FlowPane fx:id="navigationContainer"
                           styleClass="navigation-container">
 
-                    <ToggleButton fx:id="dashboardButton"
-                                  text="Dashboard"
-                                  maxWidth="Infinity"
-                                  toggleGroup="$navigationGroup"
-                                  onAction="#handleDashboard"
-                                  styleClass="navigation-button">
-                        <graphic>
-                            <ImageView fitWidth="20"
-                                       fitHeight="20"
-                                       preserveRatio="true">
-                                <AppImages fx:constant="DASHBOARD_ICON"/>
-                            </ImageView>
-                        </graphic>
-                    </ToggleButton>
-
                     <ToggleButton fx:id="mealsButton"
                                   text="Meals"
                                   maxWidth="Infinity"
@@ -181,6 +166,23 @@
                                        fitHeight="20"
                                        preserveRatio="true">
                                 <AppImages fx:constant="WORKOUTS_ICON"/>
+                            </ImageView>
+                        </graphic>
+                    </ToggleButton>
+
+                    <ToggleButton fx:id="dashboardButton"
+                                  text="Dashboard"
+                                  visible="false"
+                                  managed="false"
+                                  maxWidth="Infinity"
+                                  toggleGroup="$navigationGroup"
+                                  onAction="#handleDashboard"
+                                  styleClass="navigation-button">
+                        <graphic>
+                            <ImageView fitWidth="20"
+                                       fitHeight="20"
+                                       preserveRatio="true">
+                                <AppImages fx:constant="DASHBOARD_ICON"/>
                             </ImageView>
                         </graphic>
                     </ToggleButton>

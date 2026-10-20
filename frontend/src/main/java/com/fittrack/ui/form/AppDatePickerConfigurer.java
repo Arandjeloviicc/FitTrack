@@ -69,12 +69,7 @@ public class AppDatePickerConfigurer {
                 KeyEvent.KEY_PRESSED,
                 event -> {
                     if (event.getCode() == KeyCode.ENTER) {
-                        System.out.println("DATE PICKER ENTER");
-
                         commitEditorValue(datePicker);
-
-                        System.out.println("AFTER COMMIT: " + datePicker.getValue());
-
                         event.consume();
                     }
                 }

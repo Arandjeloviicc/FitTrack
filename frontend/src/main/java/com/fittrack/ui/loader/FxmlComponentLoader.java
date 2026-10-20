@@ -16,9 +16,7 @@ public class FxmlComponentLoader {
         URL resource = FxmlComponentLoader.class.getResource(resourcePath);
 
         if (resource == null) {
-            throw new IllegalStateException(
-                    "FXML resource not found on classpath: " + resourcePath
-            );
+            throw new IllegalStateException("FXML resource not found on classpath: " + resourcePath);
         }
 
         try {
@@ -28,9 +26,7 @@ public class FxmlComponentLoader {
             T controller = loader.getController();
 
             if (controller == null) {
-                throw new IllegalStateException(
-                        "FXML component has no controller: " + resourcePath
-                );
+                throw new IllegalStateException("FXML component has no controller: " + resourcePath);
             }
 
             return new LoadedComponent<>(root, controller);

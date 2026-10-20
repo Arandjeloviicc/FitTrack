@@ -3,12 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.fittrack.ui.control.DecimalTextField?>
+
 <StackPane fx:id="rootLayout"
-      xmlns="http://javafx.com/javafx/22"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.fittrack.controller.profile.editor.ProfilePersonalInfoEditorController"
-      stylesheets="@../../../css/profile/editor/profile-personal-info-editor.css"
-      styleClass="profile-personal-info-editor-view">
+           xmlns="http://javafx.com/javafx/22"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.fittrack.controller.profile.editor.ProfilePersonalInfoEditorController"
+           stylesheets="@../../../css/profile/editor/profile-personal-info-editor.css"
+           styleClass="profile-personal-info-editor-view">
 
     <VBox fx:id="dialogContainer"
           maxWidth="Infinity"
@@ -159,10 +161,10 @@
                            styleClass="field-label"/>
 
                     <StackPane>
-                        <TextField fx:id="heightField"
-                                   maxWidth="Infinity"
-                                   promptText="Enter your height"
-                                   styleClass="input-field, text-field, profile-personal-info-height-field"/>
+                        <DecimalTextField fx:id="heightField"
+                                          maxWidth="Infinity"
+                                          promptText="Enter your height"
+                                          styleClass="input-field, text-field, profile-personal-info-height-field"/>
 
                         <Label text="cm"
                                mouseTransparent="true"
