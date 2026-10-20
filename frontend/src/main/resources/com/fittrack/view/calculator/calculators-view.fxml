@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Button?>
@@ -16,6 +15,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.ComboBox?>
+<?import com.fittrack.ui.control.IntegerTextField?>
+<?import com.fittrack.ui.control.DecimalTextField?>
 
 <BorderPane fx:id="rootLayout"
             xmlns="http://javafx.com/javafx/22"
@@ -47,7 +48,7 @@
                     <Label styleClass="field-label"
                            text="Age"/>
 
-                    <TextField fx:id="ageField"
+                    <IntegerTextField fx:id="ageField"
                                maxWidth="Infinity"
                                promptText="Enter your age"
                                styleClass="input-field, text-field"/>
@@ -91,10 +92,10 @@
                     <Label styleClass="field-label"
                            text="Height (cm)"/>
 
-                    <TextField fx:id="heightField"
-                               maxWidth="Infinity"
-                               promptText="Enter your height"
-                               styleClass="input-field,text-field"/>
+                    <DecimalTextField fx:id="heightField"
+                                      maxWidth="Infinity"
+                                      promptText="Enter your height"
+                                      styleClass="input-field,text-field"/>
 
                     <Label fx:id="heightMessage"
                            styleClass="helper-label"
@@ -109,10 +110,10 @@
                     <Label styleClass="field-label"
                            text="Weight (kg)"/>
 
-                    <TextField fx:id="weightField"
-                               maxWidth="Infinity"
-                               promptText="Enter your weight"
-                               styleClass="input-field,text-field"/>
+                    <DecimalTextField fx:id="weightField"
+                                      maxWidth="Infinity"
+                                      promptText="Enter your weight"
+                                      styleClass="input-field,text-field"/>
 
                     <Label fx:id="weightMessage"
                            styleClass="helper-label"
@@ -163,10 +164,10 @@
                         <Label text="Body fat (%)"
                                styleClass="field-label"/>
 
-                        <TextField fx:id="bodyFatField"
-                                   maxWidth="Infinity"
-                                   promptText="Enter your body fat percentage"
-                                   styleClass="input-field, text-field"/>
+                        <DecimalTextField fx:id="bodyFatField"
+                                          maxWidth="Infinity"
+                                          promptText="Enter your body fat percentage"
+                                          styleClass="input-field, text-field"/>
 
                         <Label fx:id="bodyFatMessage"
                                text="Optional. Used for a more personalized BMR estimate."
@@ -189,10 +190,10 @@
                         <Label styleClass="field-label"
                                text="Neck (cm)"/>
 
-                        <TextField fx:id="neckField"
-                                   maxWidth="Infinity"
-                                   promptText="Enter your nect circumference"
-                                   styleClass="input-field,text-field"/>
+                        <DecimalTextField fx:id="neckField"
+                                          maxWidth="Infinity"
+                                          promptText="Enter your neck circumference"
+                                          styleClass="input-field,text-field"/>
 
                         <Label fx:id="neckMessage"
                                styleClass="helper-label"
@@ -207,10 +208,10 @@
                         <Label styleClass="field-label"
                                text="Waist (cm)"/>
 
-                        <TextField fx:id="waistField"
-                                   maxWidth="Infinity"
-                                   promptText="Enter your waist circumference"
-                                   styleClass="input-field,text-field"/>
+                        <DecimalTextField fx:id="waistField"
+                                          maxWidth="Infinity"
+                                          promptText="Enter your waist circumference"
+                                          styleClass="input-field,text-field"/>
 
                         <Label fx:id="waistMessage"
                                styleClass="helper-label"
@@ -229,10 +230,10 @@
                         <Label styleClass="field-label"
                                text="Hip (cm)"/>
 
-                        <TextField fx:id="hipField"
-                                   maxWidth="Infinity"
-                                   promptText="Enter your hip circumference"
-                                   styleClass="input-field,text-field"/>
+                        <DecimalTextField fx:id="hipField"
+                                          maxWidth="Infinity"
+                                          promptText="Enter your hip circumference"
+                                          styleClass="input-field,text-field"/>
 
                         <Label fx:id="hipMessage"
                                styleClass="helper-label"
