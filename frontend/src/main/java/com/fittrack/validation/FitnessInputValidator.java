@@ -23,7 +23,7 @@ public final class FitnessInputValidator {
 
     // ── Calculator Helpers ─────────────────────────────────────────────────
     private static boolean isDecimalMeasurementValid(String value, double min, double max) {
-        if (value == null || !value.trim().matches("^\\d{1,3}([.,]\\d{1,2})?$")) {
+        if (value == null || !value.trim().matches("^\\d{1,3}([.,]\\d{1,3})?$")) {
             return false;
         }
 
@@ -77,7 +77,7 @@ public final class FitnessInputValidator {
     // ── Meal Helpers ─────────────────────────────────────────────────
     private static boolean isFoodDecimalValid(String value) {
         return value != null
-                && value.trim().matches("^\\d{1,4}([.,]\\d{1,2})?$");
+                && value.trim().matches("^\\d{1,4}([.,]\\d{1,3})?$");
     }
 
     public static boolean isPositiveFoodDecimal(String value) {

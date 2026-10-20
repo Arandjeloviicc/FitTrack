@@ -38,4 +38,14 @@ public class TextFieldValidators {
             return INTEGER_PATTERN.matcher(newText).matches() ? change : null;
         }));
     }
+
+    public static void applyMaxLength(TextField textField, int maxLength) {
+        textField.setTextFormatter(
+                new TextFormatter<>(change ->
+                        change.getControlNewText().length() <= maxLength
+                                ? change
+                                : null
+                )
+        );
+    }
 }
