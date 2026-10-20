@@ -143,6 +143,9 @@ public final class CalculationService {
     }
 
     public static double calculateBodyFatChange(double weightKg, double bodyFatPercentage, double idealBodyFatPercentage) {
-        return weightKg * ((bodyFatPercentage - idealBodyFatPercentage) / 100.0);
+        double leanBodyMass = weightKg * (1 - bodyFatPercentage / 100.0);
+        double targetWeight = leanBodyMass / (1 - idealBodyFatPercentage / 100.0);
+
+        return weightKg - targetWeight;
     }
 }
