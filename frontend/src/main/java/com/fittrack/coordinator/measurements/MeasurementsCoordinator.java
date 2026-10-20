@@ -16,7 +16,6 @@ import com.fittrack.ui.overlay.OverlayManager;
 import com.fittrack.ui.popup.PopupShellController;
 import com.fittrack.util.NumberUtils;
 
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Consumer;
 
@@ -170,7 +169,7 @@ public class MeasurementsCoordinator {
 
     public void openBodyMeasurementDeleteConfirmation(BodyMeasurementResponse bodyMeasurement, Runnable onDelete) {
         String date = bodyMeasurement.loggedAt()
-                .atZone(ZoneId.systemDefault())
+                .atZone(AppConstants.APP_TIME_ZONE)
                 .format(DATE_FORMATTER);
 
         openDeleteConfirmation(

@@ -84,6 +84,9 @@ public class MeasurementsController extends NavigableController implements Initi
     private boolean weightHistoryLoading;
     private boolean bodyHistoryLoading;
 
+    private int weightHistoryLoadVersion;
+    private int bodyHistoryLoadVersion;
+
     // Coordinator
     private final MeasurementsCoordinator coordinator = new MeasurementsCoordinator();
 
@@ -138,6 +141,10 @@ public class MeasurementsController extends NavigableController implements Initi
                 addEntryButton.setText("+ Add weight");
                 addEntryButton.setDisable(weightLogs == null);
 
+                if (weightLogs == null) {
+                    clearDisplayedMeasurements();
+                }
+
                 loadWeightHistory();
             }
 
@@ -145,9 +152,20 @@ public class MeasurementsController extends NavigableController implements Initi
                 addEntryButton.setText("+ Add body measurement");
                 addEntryButton.setDisable(bodyMeasurements == null);
 
+                if (bodyMeasurements == null) {
+                    clearDisplayedMeasurements();
+                }
+
                 loadBodyMeasurementHistory();
             }
         }
+    }
+
+    private void clearDisplayedMeasurements() {
+        historyContainer.getChildren().clear();
+
+        chartContainer.setVisible(false);
+        chartContainer.setManaged(false);
     }
 
     private void updateTabsLayout() {
@@ -183,6 +201,7 @@ public class MeasurementsController extends NavigableController implements Initi
         }
 
         weightHistoryLoading = true;
+        int loadVersion = ++weightHistoryLoadVersion;
 
         if (isSelected(MeasurementType.WEIGHT)) {
             addEntryButton.setDisable(true);
@@ -192,6 +211,10 @@ public class MeasurementsController extends NavigableController implements Initi
                 () -> weightLogService.getWeightHistory(),
 
                 data -> {
+                    if (loadVersion != weightHistoryLoadVersion) {
+                        return;
+                    }
+
                     weightHistoryLoading = false;
 
                     weightLogs = new ArrayList<>(data.logs());
@@ -204,6 +227,10 @@ public class MeasurementsController extends NavigableController implements Initi
                 },
 
                 exception -> {
+                    if (loadVersion != weightHistoryLoadVersion) {
+                        return;
+                    }
+
                     weightHistoryLoading = false;
 
                     log.error(
@@ -215,6 +242,8 @@ public class MeasurementsController extends NavigableController implements Initi
     }
 
     private void showWeightHistory() {
+        setVisible(chartContainer, true);
+
         historyContainer.getChildren().clear();
 
         for (int i = 0; i < weightLogs.size(); i++) {
@@ -413,6 +442,7 @@ public class MeasurementsController extends NavigableController implements Initi
         }
 
         bodyHistoryLoading = true;
+        int loadVersion = ++bodyHistoryLoadVersion;
 
         if (isSelected(MeasurementType.BODY_MEASUREMENT)) {
             addEntryButton.setDisable(true);
@@ -422,6 +452,10 @@ public class MeasurementsController extends NavigableController implements Initi
                 bodyMeasurementService::getBodyMeasurementHistory,
 
                 data -> {
+                    if (loadVersion != bodyHistoryLoadVersion) {
+                        return;
+                    }
+
                     bodyHistoryLoading = false;
 
                     bodyMeasurements = new ArrayList<>(data.measurements());
@@ -435,6 +469,10 @@ public class MeasurementsController extends NavigableController implements Initi
                 },
 
                 exception -> {
+                    if (loadVersion != bodyHistoryLoadVersion) {
+                        return;
+                    }
+
                     bodyHistoryLoading = false;
 
                     log.error(
@@ -446,6 +484,8 @@ public class MeasurementsController extends NavigableController implements Initi
     }
 
     private void showBodyMeasurementHistory() {
+        setVisible(chartContainer, true);
+
         historyContainer.getChildren().clear();
 
         for (BodyMeasurementResponse bodyMeasurement : bodyMeasurements) {
@@ -626,6 +666,12 @@ public class MeasurementsController extends NavigableController implements Initi
     // ── Refresh Helpers ─────────────────────────────────────────────────
     @Override
     public void refresh() {
+        ++weightHistoryLoadVersion;
+        ++bodyHistoryLoadVersion;
+
+        weightHistoryLoading = false;
+        bodyHistoryLoading = false;
+
         weightLogs = null;
         bodyMeasurements = null;
         weightGoal = null;

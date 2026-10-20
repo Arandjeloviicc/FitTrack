@@ -1,5 +1,6 @@
 package com.fittrack.controller.measurements.components;
 
+import com.fittrack.config.AppConstants;
 import com.fittrack.controller.common.BaseController;
 import com.fittrack.dto.measurements.body.BodyMeasurementResponse;
 import com.fittrack.util.NumberUtils;
@@ -10,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class BodyMeasurementItemController extends BaseController {
@@ -39,7 +39,7 @@ public class BodyMeasurementItemController extends BaseController {
     public void setData(BodyMeasurementResponse measurement) {
         dateLabel.setText(
                 measurement.loggedAt()
-                        .atZone(ZoneId.systemDefault())
+                        .atZone(AppConstants.APP_TIME_ZONE)
                         .format(DATE_FORMATTER)
         );
 

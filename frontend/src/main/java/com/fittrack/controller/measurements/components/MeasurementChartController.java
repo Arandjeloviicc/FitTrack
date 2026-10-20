@@ -1,5 +1,6 @@
 package com.fittrack.controller.measurements.components;
 
+import com.fittrack.config.AppConstants;
 import com.fittrack.controller.common.BaseController;
 import com.fittrack.controller.common.ResponsiveLayout;
 import com.fittrack.dto.measurements.body.BodyMeasurementResponse;
@@ -21,7 +22,6 @@ import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -331,7 +331,7 @@ public class MeasurementChartController extends BaseController implements Initia
             .map(log ->
                     new ChartPoint(
                             log.loggedAt()
-                                    .atZone(ZoneId.systemDefault())
+                                    .atZone(AppConstants.APP_TIME_ZONE)
                                     .toLocalDate(),
                             log.weight()
                     )
@@ -354,7 +354,7 @@ public class MeasurementChartController extends BaseController implements Initia
 
                     return new ChartPoint(
                             measurement.loggedAt()
-                                    .atZone(ZoneId.systemDefault())
+                                    .atZone(AppConstants.APP_TIME_ZONE)
                                     .toLocalDate(),
                             value
                     );
@@ -364,7 +364,7 @@ public class MeasurementChartController extends BaseController implements Initia
     }
 
     private List<ChartPoint> filterByPeriod(List<ChartPoint> points) {
-        LocalDate fromDate = selectedPeriod.from(LocalDate.now());
+        LocalDate fromDate = selectedPeriod.from(LocalDate.now(AppConstants.APP_TIME_ZONE));
 
         return points.stream()
                 .filter(

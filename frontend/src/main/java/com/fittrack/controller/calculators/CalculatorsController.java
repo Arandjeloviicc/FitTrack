@@ -729,7 +729,6 @@ public class CalculatorsController extends FormController implements Initializab
 
     // ── Body Fat Helpers ─────────────────────────────────────────────────
     private void setBodyFatResult(int age, Gender gender, double heightCm, double weightKg, double neckCm, double waistCm, Double hipCm) {
-
         double bodyFat = CalculationService.calculateBodyFatPercentage(gender, heightCm, neckCm, waistCm, hipCm);
 
         double displayedBodyFat = Math.round(bodyFat * 10.0) / 10.0;
@@ -832,7 +831,7 @@ public class CalculatorsController extends FormController implements Initializab
             obese = NumberUtils.format("%.1f", 25.1) + "% and above";
         }
         else {
-            essential = NumberUtils.formatRange(10.1, 13.0) + "%";
+            essential = NumberUtils.formatRange(10.0, 13.0) + "%";
             athletes = NumberUtils.formatRange(13.1, 20.0) + "%";
             fitness = NumberUtils.formatRange(20.1, 24.0) + "%";
             average = NumberUtils.formatRange(24.1, 32.0) + "%";

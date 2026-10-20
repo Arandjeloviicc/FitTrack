@@ -24,7 +24,6 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -100,7 +99,7 @@ public class BodyMeasurementEditorController extends FormController implements I
         waistField.clear();
         hipField.clear();
 
-        datePicker.setValue(LocalDate.now());
+        datePicker.setValue(LocalDate.now(AppConstants.APP_TIME_ZONE));
 
         clearNeckError();
         clearWaistError();
@@ -127,7 +126,7 @@ public class BodyMeasurementEditorController extends FormController implements I
 
         datePicker.setValue(
                 measurement.loggedAt()
-                        .atZone(ZoneId.systemDefault())
+                        .atZone(AppConstants.APP_TIME_ZONE)
                         .toLocalDate()
         );
 
@@ -209,7 +208,7 @@ public class BodyMeasurementEditorController extends FormController implements I
         }
 
         Instant loggedAt = datePicker.getValue()
-                .atStartOfDay(ZoneId.systemDefault())
+                .atStartOfDay(AppConstants.APP_TIME_ZONE)
                 .toInstant();
 
         BodyMeasurementRequest request = new BodyMeasurementRequest(
@@ -269,7 +268,7 @@ public class BodyMeasurementEditorController extends FormController implements I
             shake(datePicker);
             valid = false;
 
-        } else if (date.isAfter(LocalDate.now())) {
+        } else if (date.isAfter(LocalDate.now(AppConstants.APP_TIME_ZONE))) {
             showDateMessage(AppConstants.Messages.INVALID_MEASUREMENT_DATE_MESSAGE);
             shake(datePicker);
             valid = false;

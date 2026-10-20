@@ -23,7 +23,6 @@ import javafx.scene.layout.StackPane;
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -82,7 +81,7 @@ public class WeightLogEditorController extends FormController implements Initial
         saveButton.setText("Add");
 
         weightField.clear();
-        datePicker.setValue(LocalDate.now());
+        datePicker.setValue(LocalDate.now(AppConstants.APP_TIME_ZONE));
 
         clearWeightError();
         clearDateError();
@@ -100,7 +99,7 @@ public class WeightLogEditorController extends FormController implements Initial
 
         datePicker.setValue(
                 weightLog.loggedAt()
-                        .atZone(ZoneId.systemDefault())
+                        .atZone(AppConstants.APP_TIME_ZONE)
                         .toLocalDate()
         );
 
@@ -161,7 +160,7 @@ public class WeightLogEditorController extends FormController implements Initial
         double weight = NumberUtils.parseDecimal(weightField.getText().trim());
 
         Instant loggedAt = datePicker.getValue()
-                .atStartOfDay(ZoneId.systemDefault())
+                .atStartOfDay(AppConstants.APP_TIME_ZONE)
                 .toInstant();
 
         WeightLogRequest request = new WeightLogRequest(
@@ -190,7 +189,7 @@ public class WeightLogEditorController extends FormController implements Initial
             showDateMessage(AppConstants.Messages.INVALID_DATE_FORMAT_MESSAGE);
             shake(datePicker);
             valid = false;
-        } else if (date.isAfter(LocalDate.now())) {
+        } else if (date.isAfter(LocalDate.now(AppConstants.APP_TIME_ZONE))) {
             showDateMessage(AppConstants.Messages.INVALID_MEASUREMENT_DATE_MESSAGE);
             shake(datePicker);
             valid = false;

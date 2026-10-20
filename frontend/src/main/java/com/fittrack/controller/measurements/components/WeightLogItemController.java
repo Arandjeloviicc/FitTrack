@@ -1,5 +1,6 @@
 package com.fittrack.controller.measurements.components;
 
+import com.fittrack.config.AppConstants;
 import com.fittrack.controller.common.BaseController;
 import com.fittrack.dto.measurements.weight.WeightLogResponse;
 import com.fittrack.model.profile.WeightGoal;
@@ -11,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class WeightLogItemController extends BaseController {
@@ -33,7 +33,7 @@ public class WeightLogItemController extends BaseController {
     public void setData(WeightLogResponse weightLog, Double previousWeight, WeightGoal goalType) {
         dateLabel.setText(
                 weightLog.loggedAt()
-                        .atZone(ZoneId.systemDefault())
+                        .atZone(AppConstants.APP_TIME_ZONE)
                         .format(DATE_FORMATTER)
         );
 

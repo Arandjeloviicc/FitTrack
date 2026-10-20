@@ -1,6 +1,7 @@
 package com.fittrack.service.calculators;
 
 import com.fittrack.api.calculators.CalculatorsApi;
+import com.fittrack.config.AppConstants;
 import com.fittrack.dto.calculators.CalculatorsResponse;
 import com.fittrack.model.calculators.CalculatorsData;
 import com.fittrack.model.profile.ActivityLevel;
@@ -23,7 +24,7 @@ public class CalculatorsService {
 
         int age = Period.between(
                 response.dateOfBirth(),
-                LocalDate.now()
+                LocalDate.now(AppConstants.APP_TIME_ZONE)
         ).getYears();
 
         return new CalculatorsData(
