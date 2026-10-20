@@ -128,7 +128,7 @@ public class MealsController extends NavigableController implements Initializabl
         initializeMealsControls();
 
         // Load Targets
-        datePicker.setValue(LocalDate.now());
+        datePicker.setValue(LocalDate.now(AppConstants.APP_TIME_ZONE));
     }
 
     // ── Refresh Actions ─────────────────────────────────────────────────
@@ -151,7 +151,7 @@ public class MealsController extends NavigableController implements Initializabl
         if (currentValue != null) {
             datePicker.setValue(currentValue.minusDays(1));
         } else {
-            datePicker.setValue(LocalDate.now().minusDays(1));
+            datePicker.setValue(LocalDate.now(AppConstants.APP_TIME_ZONE).minusDays(1));
         }
     }
 
@@ -161,7 +161,7 @@ public class MealsController extends NavigableController implements Initializabl
         if (currentValue != null) {
             datePicker.setValue(currentValue.plusDays(1));
         } else {
-            datePicker.setValue(LocalDate.now().plusDays(1));
+            datePicker.setValue(LocalDate.now(AppConstants.APP_TIME_ZONE).plusDays(1));
         }
     }
 
@@ -264,6 +264,31 @@ public class MealsController extends NavigableController implements Initializabl
         loadMealCard("Snacks", snacks, snacksCard);
     }
 
+    private void clearMealsView() {
+        nutritionTargets = null;
+
+        caloriesCard.setData(
+                "Calories",
+                0,
+                0,
+                "cal",
+                true
+        );
+
+        wideCarbsCard.setData("Carbs", 0, 0, "g", false);
+        wideFatCard.setData("Fat", 0, 0, "g", false);
+        wideProteinCard.setData("Protein", 0, 0, "g", false);
+
+        narrowCarbsCard.setData("Carbs", 0, 0, "g", false);
+        narrowFatCard.setData("Fat", 0, 0, "g", false);
+        narrowProteinCard.setData("Protein", 0, 0, "g", false);
+
+        loadMealCard("Breakfast", null, breakfastCard);
+        loadMealCard("Lunch", null, lunchCard);
+        loadMealCard("Dinner", null, dinnerCard);
+        loadMealCard("Snacks", null, snacksCard);
+    }
+
     // ── Responsive Helpers ─────────────────────────────────────────────────
     @Override
     public void updateWidthLayout(boolean narrow) {
@@ -354,6 +379,7 @@ public class MealsController extends NavigableController implements Initializabl
 
         datePicker.valueProperty().addListener((observable, oldDate, newDate) -> {
             if (newDate != null) {
+                clearMealsView();
                 loadNutritionTargets(newDate);
             }
         });

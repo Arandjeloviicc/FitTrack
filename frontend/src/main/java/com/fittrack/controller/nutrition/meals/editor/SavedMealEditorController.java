@@ -242,24 +242,13 @@ public class SavedMealEditorController extends FormController implements Initial
     }
 
     public void updateDraftItem(MealItemDraft currentItem, double quantityGrams) {
-        int index = draftItems.indexOf(currentItem);
+        int index = findDraftItemIndex(currentItem);
 
         if (index == -1) {
             return;
         }
 
-        MealItemDraft updatedItem = new MealItemDraft(
-                currentItem.mealItemId(),
-                currentItem.foodId(),
-                currentItem.foodName(),
-                currentItem.brand(),
-                quantityGrams,
-                currentItem.servingSizeGrams(),
-                currentItem.caloriesPerServing(),
-                currentItem.proteinPerServing(),
-                currentItem.carbsPerServing(),
-                currentItem.fatPerServing()
-        );
+        MealItemDraft updatedItem = currentItem.withQuantity(quantityGrams);
 
         draftItems.set(index, updatedItem);
 
@@ -267,8 +256,25 @@ public class SavedMealEditorController extends FormController implements Initial
     }
 
     public void removeDraftItem(MealItemDraft item) {
-        draftItems.remove(item);
+        int index = findDraftItemIndex(item);
+
+        if (index == -1) {
+            return;
+        }
+
+        draftItems.remove(index);
+
         refreshDraft();
+    }
+
+    private int findDraftItemIndex(MealItemDraft targetItem) {
+        for (int i = 0; i < draftItems.size(); i++) {
+            if (draftItems.get(i) == targetItem) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     // ── Draft Refresh ──────────────────────────────────────────

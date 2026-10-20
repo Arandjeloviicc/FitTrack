@@ -1,5 +1,6 @@
 package com.fittrack.controller.nutrition.meals.dialog;
 
+import com.fittrack.config.AppConstants;
 import com.fittrack.controller.common.BaseController;
 import com.fittrack.controller.common.ResponsiveLayout;
 import com.fittrack.model.nutrition.MealCopyMode;
@@ -120,7 +121,7 @@ public class MealCopyDialogController extends BaseController implements Initiali
             }
         });
 
-        datePicker.setValue(LocalDate.now());
+        datePicker.setValue(LocalDate.now(AppConstants.APP_TIME_ZONE));
     }
 
     // ── Responsive Helpers ─────────────────────────────────────────────────

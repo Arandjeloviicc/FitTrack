@@ -97,10 +97,15 @@ public class MyFoodsController extends NavigableController implements Initializa
                     updateView();
                 },
 
-                exception -> log.error(
-                        "Failed to load user's foods.",
-                        exception
-                )
+                exception -> {
+                    foods = new ArrayList<>();
+                    updateView();
+
+                    log.error(
+                            "Failed to load user's foods.",
+                            exception
+                    );
+                }
         );
     }
 

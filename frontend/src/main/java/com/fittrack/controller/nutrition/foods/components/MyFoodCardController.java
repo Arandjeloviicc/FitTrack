@@ -2,6 +2,7 @@ package com.fittrack.controller.nutrition.foods.components;
 
 import com.fittrack.controller.common.BaseController;
 import com.fittrack.dto.nutrition.food.FoodResponse;
+import com.fittrack.util.NumberUtils;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -23,7 +24,7 @@ public class MyFoodCardController extends BaseController {
     public void setData(FoodResponse food) {
         nameLabel.setText(food.name());
 
-        String servingSize = Math.round(food.servingSizeGrams()) + " g";
+        String servingSize = NumberUtils.formatInputDecimal(food.servingSizeGrams()) + " g";
 
         if (food.brand() == null || food.brand().isBlank()) {
             detailsLabel.setText(servingSize);

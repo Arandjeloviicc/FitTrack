@@ -4,6 +4,7 @@ import com.fittrack.config.AppConstants;
 import com.fittrack.controller.common.FormController;
 import com.fittrack.dto.nutrition.food.FoodRequest;
 import com.fittrack.dto.nutrition.food.FoodResponse;
+import com.fittrack.ui.form.TextFieldValidators;
 import com.fittrack.ui.scene.SceneShortcuts;
 import com.fittrack.util.NumberUtils;
 import com.fittrack.validation.FitnessInputValidator;
@@ -111,6 +112,9 @@ public class FoodEditorController extends FormController implements Initializabl
     }
 
     private void addListeners() {
+        TextFieldValidators.applyMaxLength(nameField, 255);
+        TextFieldValidators.applyMaxLength(brandField, 255);
+
         nameField.textProperty().addListener((observable, oldValue, newValue) -> restoreNameHelper());
         servingSizeField.textProperty().addListener((observable, oldValue, newValue) -> restoreServingSizeHelper());
         caloriesField.textProperty().addListener((observable, oldValue, newValue) -> restoreCaloriesHelper());

@@ -10,7 +10,6 @@ import com.fittrack.model.nutrition.MealType;
 import com.fittrack.ui.loader.FxmlComponentLoader;
 import com.fittrack.ui.loader.LoadedComponent;
 import com.fittrack.ui.scene.SceneShortcuts;
-import com.fittrack.ui.form.TextFieldValidators;
 import com.fittrack.util.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +45,7 @@ public class MealItemEditorController extends FormController implements Initiali
     @FXML private Button removeButton;
 
     // Helpers
+    private String initialServingsText;
     private FoodResponse selectedFood;
     private MealItemResponse selectedMealItem;
     private MealItemDraft selectedDraftItem;
@@ -89,6 +89,7 @@ public class MealItemEditorController extends FormController implements Initiali
 
         servingSizeComboBox.getSelectionModel().selectFirst();
 
+        initialServingsText = null;
         servingsField.setText("1");
 
         setVisible(removeButton, false);
@@ -118,7 +119,8 @@ public class MealItemEditorController extends FormController implements Initiali
 
         double numberOfServings = mealItem.quantityGrams() / mealItem.servingSizeGrams();
 
-        servingsField.setText(NumberUtils.formatInputDecimal(numberOfServings));
+        initialServingsText = NumberUtils.formatInputDecimal(numberOfServings);
+        servingsField.setText(initialServingsText);
 
         setVisible(removeButton, true);
 
@@ -145,7 +147,8 @@ public class MealItemEditorController extends FormController implements Initiali
 
         double numberOfServings = item.quantityGrams() / item.servingSizeGrams();
 
-        servingsField.setText(NumberUtils.formatInputDecimal(numberOfServings));
+        initialServingsText = NumberUtils.formatInputDecimal(numberOfServings);
+        servingsField.setText(initialServingsText);
 
         setVisible(removeButton, true);
 
@@ -167,6 +170,7 @@ public class MealItemEditorController extends FormController implements Initiali
 
         servingSizeComboBox.getSelectionModel().selectFirst();
 
+        initialServingsText = null;
         servingsField.setText("1");
 
         setVisible(mealContainer, false);
@@ -241,12 +245,27 @@ public class MealItemEditorController extends FormController implements Initiali
             return;
         }
 
-        double servingSizeGrams = getSelectedServingSizeGrams();
-        double quantityGrams = servingSizeGrams * numberOfServings;
+        double quantityGrams = getQuantityGrams(numberOfServings, servingsText);
 
         if (onConfirmAction != null) {
             onConfirmAction.accept(quantityGrams);
         }
+    }
+
+    private double getQuantityGrams(double numberOfServings, String servingsText) {
+        String normalizedServings = servingsText.trim().replace(",", ".");
+
+        if (normalizedServings.equals(initialServingsText)) {
+            if (selectedMealItem != null) {
+                return selectedMealItem.quantityGrams();
+            }
+
+            if (selectedDraftItem != null) {
+                return selectedDraftItem.quantityGrams();
+            }
+        }
+
+        return getSelectedServingSizeGrams() * numberOfServings;
     }
 
     @FXML
@@ -278,8 +297,6 @@ public class MealItemEditorController extends FormController implements Initiali
     }
 
     private void addListeners() {
-        TextFieldValidators.applyDecimalFilter(servingsField, 3);
-
         servingsField.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     updateNutrientsInfo();
@@ -326,8 +343,6 @@ public class MealItemEditorController extends FormController implements Initiali
             return;
         }
 
-        double selectedServingSize = getSelectedServingSizeGrams();
-
         double baseServingSize;
         double caloriesPerServing;
         double carbsPerServing;
@@ -360,7 +375,7 @@ public class MealItemEditorController extends FormController implements Initiali
             return;
         }
 
-        double quantityGrams = selectedServingSize * numberOfServings;
+        double quantityGrams = getQuantityGrams(numberOfServings, servingsField.getText());
 
         double ratio = quantityGrams / baseServingSize;
 
