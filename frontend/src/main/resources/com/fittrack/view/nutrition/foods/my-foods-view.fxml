@@ -10,6 +10,7 @@
 <?import com.fittrack.config.AppImages?>
 <?import javafx.scene.image.ImageView?>
 
+<?import javafx.scene.layout.Region?>
 <StackPane fx:id="rootLayout"
            xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
@@ -23,14 +24,22 @@
           managed="false"
           styleClass="my-foods-content">
 
-        <!-- Actions -->
-        <HBox alignment="CENTER_RIGHT"
-              styleClass="my-foods-actions">
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT"
+              styleClass="my-foods-header">
+
+            <Label text="My foods"
+                   styleClass="section-title"/>
+
+            <Label fx:id="foodsCountLabel"
+                   styleClass="my-foods-count"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
 
             <Button fx:id="addFoodButton"
                     text="+ Add food"
                     onAction="#handleAddFood"
-                    styleClass="action-btn, my-foods-add-button"/>
+                    styleClass="action-btn, my-foods-add-button-compact"/>
         </HBox>
 
         <!-- Seacrh -->

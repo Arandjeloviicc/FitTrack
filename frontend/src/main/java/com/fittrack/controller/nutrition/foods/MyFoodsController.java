@@ -44,7 +44,8 @@ public class MyFoodsController extends NavigableController implements Initializa
     // Scroll
     @FXML private ScrollPane foodsScroll;
 
-    // Add Button
+    // Header
+    @FXML private Label foodsCountLabel;
     @FXML private Button addFoodButton;
 
     // Search
@@ -126,6 +127,7 @@ public class MyFoodsController extends NavigableController implements Initializa
         setVisible(emptyState, empty);
 
         if (!empty) {
+            foodsCountLabel.setText(foods.size() == 1 ? "1 item" : foods.size() + " items");
             showFilteredFoods(searchField.getText());
         }
     }
@@ -323,19 +325,6 @@ public class MyFoodsController extends NavigableController implements Initializa
     @Override
     public void updateWidthLayout(boolean narrow) {
         rootLayout.pseudoClassStateChanged(NARROW, narrow);
-
-        HBox.setHgrow(
-                addFoodButton,
-                narrow
-                        ? Priority.ALWAYS
-                        : Priority.NEVER
-        );
-
-        addFoodButton.setMaxWidth(
-                narrow
-                        ? Double.MAX_VALUE
-                        : Region.USE_COMPUTED_SIZE
-        );
     }
 
     // ── Refresh ──────────────────────────────────────────────

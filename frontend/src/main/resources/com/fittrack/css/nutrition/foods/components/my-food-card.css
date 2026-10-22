@@ -37,6 +37,7 @@
 
 .my-food-card-content {
     -fx-cursor: hand;
+    -fx-spacing: 1em;
 }
 
 /* ========================================================== */

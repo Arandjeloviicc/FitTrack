@@ -24,6 +24,7 @@
 
         <!-- Food info -->
         <VBox alignment="CENTER_LEFT"
+              minWidth="0"
               HBox.hgrow="ALWAYS"
               styleClass="my-food-card-info">
 
@@ -37,6 +38,7 @@
 
         <!-- Calories -->
         <Label fx:id="caloriesLabel"
+               minWidth="-Infinity"
                styleClass="my-food-card-calories"/>
 
     </HBox>

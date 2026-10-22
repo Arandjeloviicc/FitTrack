@@ -21,11 +21,27 @@
 }
 
 /* ========================================================== */
-/* == ACTIONS =============================================== */
+/* == HEADER ================================================ */
 /* ========================================================== */
 
-.my-foods-actions {
-    -fx-spacing: 1em;
+.my-foods-header {
+    -fx-spacing: 0.75em;
+}
+
+.my-foods-count {
+    -fx-font-size: 0.95em;
+    -fx-text-fill: -app-text-muted;
+}
+
+.my-foods-add-button-compact {
+    -fx-font-size: 1em;
+    -fx-background-radius: 0.6em;
+
+    -fx-min-height: 2.5em;
+    -fx-pref-height: 2.5em;
+    -fx-max-height: 2.5em;
+
+    -fx-padding: 0 1.1em;
 }
 
 .my-foods-add-button {
