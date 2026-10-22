@@ -1,2 +1,12 @@
 .idea/
 *.iml
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local configuration containing secrets
+application-local.properties
+application-local.yml
+application-local.yaml

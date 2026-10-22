@@ -1,0 +1,18 @@
+* text=auto
+
+**/mvnw text eol=lf
+**/mvnw.cmd text eol=crlf
+
+*.java text
+*.xml text
+*.fxml text
+*.css text
+*.properties text
+*.md text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.jar binary
