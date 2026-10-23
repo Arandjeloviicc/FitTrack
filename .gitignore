@@ -1,12 +1,49 @@
+# Build output
+**/target/
+**/build/
+**/dist/
+**/dist-preview/
+**/dist-user/
+**/package-input/
+**/nbdist/
+
+# Maven Wrapper binary
+**/.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
 .idea/
 *.iml
+*.iws
+*.ipr
 
-# Local environment and secrets
+# Eclipse / STS
+**/.apt_generated/
+**/.classpath
+**/.factorypath
+**/.project
+**/.settings/
+**/.springBeans
+**/.sts4-cache/
+
+# NetBeans
+**/nbproject/private/
+**/nbbuild/
+**/.nb-gradle/
+
+# VS Code / Kotlin
+.vscode/
+**/.kotlin/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Environment variables
 .env
 .env.*
 !.env.example
 
-# Local configuration containing secrets
-application-local.properties
-application-local.yml
-application-local.yaml
+# Local Spring configuration
+**/application-local.properties
+**/application-local.yml
+**/application-local.yaml
