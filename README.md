@@ -1,224 +1,210 @@
+<div align="center">
+  <img src="frontend/packaging/FitTrack-app-icon.png" alt="FitTrack icon" width="104" />
+
 # FitTrack
 
-FitTrack is a desktop fitness tracking application built with JavaFX and Spring Boot.
+**A desktop application for nutrition tracking, body measurements, and fitness calculations.**
 
-The project focuses primarily on nutrition and meal tracking, while also providing fitness calculators, user profile setup, responsive layouts and a foundation for future modules such as body measurements, workout tracking and dashboard analytics.
+![Java 22](https://img.shields.io/badge/Java-22-007396?style=flat-square)
+![JavaFX 22](https://img.shields.io/badge/JavaFX-22-536DFE?style=flat-square)
+![Spring Boot 4.1.1](https://img.shields.io/badge/Spring%20Boot-4.1.1-6DB33F?style=flat-square)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?style=flat-square)
+
+FitTrack is a university Object-Oriented Programming project built with a JavaFX desktop client, a Spring Boot REST API, and PostgreSQL.
+
+</div>
+
+## Overview
+
+FitTrack brings food logging, nutrition goals, body measurement history, and fitness calculators into one desktop application. Its JavaFX client communicates with a separate REST backend responsible for business logic, validation, and data persistence.
 
 ## Features
 
-### Implemented
+### Accounts and Profile
+- User registration and login with BCrypt password hashing
+- Initial profile setup and personal information management
+- Nutrition goals and calculated calorie and macronutrient targets
 
-#### Authentication and User Management
+### Nutrition Tracking
+- Daily food diary organized into breakfast, lunch, dinner, and snacks
+- Calorie and macronutrient summaries with goal progress
+- Food search and user-created foods
+- Customizable serving sizes and quantities
+- Adding, editing, and removing meal items
+- Saved meals and reuse of meal contents
+- Meal history and copying meals between dates
 
-- User registration
-- User login
-- BCrypt password hashing
-- User session management
-- Profile setup
+### Measurements and Progress
+- Weight logging and history
+- Waist, neck, and hip measurements
+- Editing and deleting recorded measurements
+- Progress charts with selectable time periods
 
-#### Nutrition and Meal Tracking
-
-- Daily meal tracking
-- Breakfast, lunch, dinner and snack organization
-- Nutrition and macronutrient summaries
-- Global food database
-- Custom user-created foods
-- Food search
-- Serving size and serving quantity support
-- Add, edit and remove foods from meals
-- Daily meal history by date
-- Saved meals
-- Log saved meals into a selected meal
-- Copy meals between dates
-- Nutrition target progress indicators
-- Responsive meal layouts
-- View caching and state preservation
-
-#### Fitness Calculators
-
-- BMI calculator
-- BMR calculator
-- TDEE calculator
-- Body fat percentage calculator
-- Body fat category calculation
-- Ideal body fat estimation
-- Fat mass and lean mass calculation
-
-#### Technical Features
-
-- JavaFX desktop interface
-- Responsive JavaFX layouts
-- Spring Boot REST API
-- PostgreSQL database integration
-- Neon cloud database
-- Flyway database migrations
-- Jakarta Validation
-- Centralized frontend HTTP client
-- Layered frontend architecture with controllers, services and API classes
-
-## Architecture
-
-FitTrack is separated into two applications:
-
-```text
-JavaFX Desktop Frontend
-        |
-        | HTTP / JSON
-        v
-Spring Boot REST API
-        |
-        v
-PostgreSQL Database
-```
-
-The project contains:
-
-```text
-frontend/
-backend/
-```
-
-The frontend is responsible for the user interface, user interaction and presentation logic.
-
-The backend is responsible for business logic, validation, authentication-related operations and database access.
-
-The frontend follows a layered structure similar to:
-
-```text
-FXML
-  |
-Controller
-  |
-Service
-  |
-API
-  |
-ApiClient
-  |
-HTTP / JSON
-  |
-Spring Boot Backend
-```
-
-## Technologies
-
-### Frontend
-
-- Java 22
-- JavaFX 22
-- FXML
-- CSS
-- Maven
-- Jackson
-- Java HTTP Client
-
-### Backend
-
-- Java 22
-- Spring Boot
-- Spring Web
-- Spring Data JPA
-- Hibernate
-- Jakarta Validation
-- BCrypt
-- Flyway
-- PostgreSQL
-- Maven
-
-### Database
-
-- PostgreSQL
-- Neon
+### Fitness Calculators
+- **BMI:** body mass index, category, and related weight indicators
+- **TDEE:** basal metabolic rate, activity adjustment, and calorie targets
+- **Body fat:** U.S. Navy method and body composition indicators
 
 ## Screenshots
 
-### Authentication
+*Screenshots will be added here.*
 
-#### Login
+<!-- Store screenshots in docs/screenshots/. Suggested order: login, meals, my-foods, measurements, calculators, profile. -->
 
-![Login](docs/screenshots/loginV2.png)
+## Architecture
 
-#### Register
+FitTrack uses a client-server architecture with separate desktop and backend modules.
 
-![Register](docs/screenshots/registerV2.png)
+```mermaid
+flowchart LR
+    subgraph Desktop[JavaFX Frontend]
+        Views[FXML Views] --> Controllers[Controllers]
+        Controllers --> Client[Services / API Client]
+    end
+    Client -->|HTTP / JSON| REST[Spring Boot REST Controllers]
+    REST --> Business[Services]
+    Business --> Repos[JdbcTemplate Repositories]
+    Repos --> DB[(PostgreSQL)]
+    Flyway[Flyway Migrations] --> DB
+```
 
-### Fitness Calculators
+The frontend handles navigation, UI state, input, and HTTP communication. The backend handles business rules, validation, and persistence. Data access uses **Spring JDBC (`JdbcTemplate`) with parameterized SQL**, rather than JPA/Hibernate. **Flyway** manages database schema migrations.
 
-#### BMI Calculator
+## Technology Stack
 
-![BMI Calculator](docs/screenshots/bmiCalculatorV2.png)
-
-#### TDEE Calculator
-
-![TDEE Calculator](docs/screenshots/tdeeCalculator.png)
-
-#### Body Fat Calculator
-
-![Body Fat Calculator](docs/screenshots/bodyFatCalculatorV2.png)
-
-### Meals and Nutrition
-
-#### Daily Meals Overview
-
-![Daily Meals](docs/screenshots/mealsOverview.png)
-
-#### Add Food to Meal
-
-![Add Food to Meal](docs/screenshots/addToMeal.png)
-
-#### Create Custom Food
-
-![Create Custom Food](docs/screenshots/createFood.png)
-
-#### Saved Meals
-
-![Saved Meals](docs/screenshots/savedMeals.png)
-
-#### Copy Meal
-
-![Copy Meal](docs/screenshots/copyMeal.png)
-
-> Additional screenshots may be added as the remaining application modules are completed.
-
-## In Development
-
-The following modules are planned for the current project:
-
-- User profile viewing and editing
-- Weight tracking
-- Body measurement tracking
-- Progress charts with selectable time ranges
-- Basic exercise management
-- Basic workout creation and logging
-- Dashboard with nutrition, measurement and workout information
-- Interactive 2D muscle map
-
-## Planned Future Improvements
-
-After the current desktop version is completed, the project may be expanded with:
-
-- More advanced workout tracking
-- Exercise progress history
-- Personal records and training statistics
-- Additional dashboard cards and analytics
-- Extended body measurement reports
-- Improved nutrition reporting
-- Additional calculators
-- Further UI and accessibility improvements
-- Native mobile application
+| Area                | Technology                                                 |
+|---------------------|------------------------------------------------------------|
+| Language            | Java 22                                                    |
+| Desktop UI          | JavaFX 22, FXML, CSS                                       |
+| Backend             | Spring Boot 4.1.1, Spring Web MVC                          |
+| HTTP / JSON         | Java `HttpClient`, Jackson 3                               |
+| Data access         | Spring JDBC / `JdbcTemplate`                               |
+| Database            | PostgreSQL                                                 |
+| Database migrations | Flyway                                                     |
+| Validation          | Jakarta Bean Validation                                    |
+| Password hashing    | BCrypt (`jBCrypt`)                                         |
+| Build and packaging | Maven Wrapper, Maven Shade Plugin, `jpackage`, WiX Toolset |
 
 ## Project Structure
 
 ```text
 OOP-Project/
 ├── frontend/
-│   └── JavaFX desktop application
-│
+│   ├── src/main/java/com/fittrack/         # JavaFX client
+│   ├── src/main/resources/                 # FXML, CSS, images, fonts
+│   ├── packaging/                          # Windows icon and packaging script
+│   ├── pom.xml
+│   ├── mvnw
+│   └── mvnw.cmd
 ├── backend/
-│   └── Spring Boot REST API
-│
-├── docs/
-│   └── screenshots/
-│
+│   ├── src/main/java/com/fittrack/backend/ # REST API and application logic
+│   ├── src/main/resources/db/migration/    # Flyway migrations
+│   ├── pom.xml
+│   ├── mvnw
+│   └── mvnw.cmd
+├── docs/screenshots/                       # Application screenshots (to be added)
 └── README.md
 ```
+
+## Getting Started
+
+### Requirements
+
+- **JDK 22**
+- **PostgreSQL** (local or hosted) and credentials for an accessible database
+- **Git**
+
+Maven does not need to be installed separately; both modules include the Maven Wrapper.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Arandjeloviicc/OOP-Project.git
+cd OOP-Project
+```
+
+### 2. Prepare the Database
+
+Create an empty PostgreSQL database (for example, `fittrack`). Flyway applies the project's SQL migrations when the backend starts. The database user must have the permissions needed by those migrations.
+
+### 3. Configure the Backend
+
+The backend reads its database connection from environment variables:
+
+| Variable      | Description                                             |
+|---------------|---------------------------------------------------------|
+| `DB_URL`      | PostgreSQL JDBC URL, starting with `jdbc:postgresql://` |
+| `DB_USERNAME` | Database username                                       |
+| `DB_PASSWORD` | Database password                                       |
+
+**Windows PowerShell:**
+
+```powershell
+$env:DB_URL = "jdbc:postgresql://localhost:5432/fittrack"
+$env:DB_USERNAME = "postgres"
+$env:DB_PASSWORD = "your_password"
+```
+
+**Linux / macOS:**
+
+```bash
+export DB_URL="jdbc:postgresql://localhost:5432/fittrack"
+export DB_USERNAME="postgres"
+export DB_PASSWORD="your_password"
+```
+
+Use credentials for your own database and keep them out of the repository. Set the environment variables in the same terminal session that starts the backend.
+
+### 4. Run the Backend
+
+From the `backend/` directory:
+
+**Windows:**
+
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+**Linux / macOS:**
+
+```bash
+./mvnw spring-boot:run
+```
+
+The backend listens on `http://127.0.0.1:8080` by default.
+
+### 5. Run the Frontend
+
+Open a second terminal in `frontend/`:
+
+**Windows:**
+
+```powershell
+.\mvnw.cmd javafx:run
+```
+
+**Linux / macOS:**
+
+```bash
+./mvnw javafx:run
+```
+
+The desktop client connects to the local backend. Keep the backend running while using the application.
+
+## Windows Installation
+
+The Windows installers are intended for download from the repository's [GitHub Releases](https://github.com/Arandjeloviicc/OOP-Project/releases) page:
+
+- **`FitTrack-1.0.0.exe`** — Windows executable installer
+- **`FitTrack-1.0.0.msi`** — Windows Installer package
+
+Choose **one** of these alternatives. Both install the JavaFX desktop client and include a Java runtime, so a separate Java installation is not required for the installed client.
+
+The Spring Boot backend and PostgreSQL database are separate components. To use the installed client, a compatible backend must be running and accessible at the address configured in the application.
+
+## Future Improvements
+
+- Dashboard with nutrition and progress summaries
+- Exercise and workout management
+- Workout history and training statistics
+- Additional progress visualizations
