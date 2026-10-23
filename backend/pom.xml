@@ -14,13 +14,17 @@
 
     <groupId>com.fittrack</groupId>
     <artifactId>fittrack-backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>fittrack-backend</name>
-    <description>fittrack-backend</description>
-    <url/>
+    <version>1.0.0</version>
+    <name>FitTrack Backend</name>
+    <description>Spring Boot REST API for the FitTrack application</description>
 
     <properties>
         <java.version>22</java.version>
+
+        <jackson-bom.version>3.1.8</jackson-bom.version>
+        <postgresql.version>42.7.14</postgresql.version>
+        <tomcat.version>11.0.27</tomcat.version>
+        <logback.version>1.6.5</logback.version>
     </properties>
 
     <dependencies>
@@ -56,18 +60,6 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-database-postgresql</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc-test</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <!-- BCrypt -->
