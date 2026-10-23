@@ -9,19 +9,12 @@
     -fx-pref-height: 4.5em;
     -fx-max-height: 4.5em;
 
-    -fx-padding: 0 1.4em;
-    -fx-spacing: 0.7em;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 1.2em;
 
     -fx-background-color: -app-surface;
     -fx-border-color: transparent transparent -app-border-soft transparent;
-
     -fx-border-width: 0 0 1px 0;
-}
-
-.logo-bar-text {
-    -fx-text-fill: -app-text-primary;
-    -fx-font-size: 1.45em;
-    -fx-font-weight: bold;
 }
 
 /* ========================================================== */
@@ -58,7 +51,7 @@
     -fx-pref-height: 4.5em;
     -fx-max-height: 4.5em;
 
-    -fx-padding: 0 1.4em;
+    -fx-padding: 0 1.2em;
     -fx-background-color: -app-surface;
     -fx-border-color: transparent transparent -app-border-soft transparent;
 

@@ -36,10 +36,12 @@
                       styleClass="top-bar-logo"
                       visible="false"
                       managed="false">
-                    <ImageView fitWidth="48" fitHeight="48" preserveRatio="true">
-                        <AppImages fx:constant="APP_LOGO"/>
+
+                    <ImageView fitWidth="218"
+                               fitHeight="48"
+                               preserveRatio="true">
+                        <AppImages fx:constant="APP_WORDMARK"/>
                     </ImageView>
-                    <Label text="FitTrack" styleClass="logo-bar-text"/>
                 </HBox>
 
                 <Region HBox.hgrow="ALWAYS"/>
@@ -53,11 +55,15 @@
                   styleClass="sidebar">
 
                 <!-- Logo - Only on wide screens -->
-                <HBox fx:id="logoSidebar" alignment="CENTER_LEFT" styleClass="logo-bar">
-                    <ImageView fitWidth="48" fitHeight="48" preserveRatio="true">
-                        <AppImages fx:constant="APP_LOGO"/>
+                <HBox fx:id="logoSidebar"
+                      alignment="CENTER_LEFT"
+                      styleClass="logo-bar">
+
+                    <ImageView fitWidth="218"
+                               fitHeight="48"
+                               preserveRatio="true">
+                        <AppImages fx:constant="APP_WORDMARK"/>
                     </ImageView>
-                    <Label text="FitTrack" styleClass="logo-bar-text"/>
                 </HBox>
 
                 <fx:define>
