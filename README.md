@@ -47,10 +47,23 @@ FitTrack brings food logging, nutrition goals, body measurement history, and fit
 
 ## Screenshots
 
-*Screenshots will be added here.*
+### Login
+![Login](docs/screenshots/login.png)
 
-<!-- Store screenshots in docs/screenshots/. Suggested order: login, meals, my-foods, measurements, calculators, profile. -->
+### Meals
+![Meals](docs/screenshots/meals.png)
 
+### Measurements
+![Measurements](docs/screenshots/measurements.png)
+
+### Calculators
+![Calculators](docs/screenshots/calculators.png)
+
+### My Foods
+![My Foods](docs/screenshots/my-foods.png)
+
+### Profile
+![Profile](docs/screenshots/profile.png)
 ## Architecture
 
 FitTrack uses a client-server architecture with separate desktop and backend modules.
