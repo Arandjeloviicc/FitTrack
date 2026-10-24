@@ -45,25 +45,36 @@ FitTrack brings food logging, nutrition goals, body measurement history, and fit
 - **TDEE:** basal metabolic rate, activity adjustment, and calorie targets
 - **Body fat:** U.S. Navy method and body composition indicators
 
+
 ## Screenshots
 
-### Login
-![Login](docs/screenshots/login.png)
+<table>
+  <tr>
+    <th>Login</th>
+    <th>Meals</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/login.png" alt="Login screen" width="100%"></td>
+    <td><img src="docs/screenshots/meals.png" alt="Daily food diary" width="100%"></td>
+  </tr>
+  <tr>
+    <th>Measurements</th>
+    <th>Calculators</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/measurements.png" alt="Weight progress chart" width="100%"></td>
+    <td><img src="docs/screenshots/calculators.png" alt="TDEE calculator" width="100%"></td>
+  </tr>
+  <tr>
+    <th>My Foods</th>
+    <th>Profile</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/my-foods.png" alt="Custom foods" width="100%"></td>
+    <td><img src="docs/screenshots/profile.png" alt="User profile and nutrition goals" width="100%"></td>
+  </tr>
+</table>
 
-### Meals
-![Meals](docs/screenshots/meals.png)
-
-### Measurements
-![Measurements](docs/screenshots/measurements.png)
-
-### Calculators
-![Calculators](docs/screenshots/calculators.png)
-
-### My Foods
-![My Foods](docs/screenshots/my-foods.png)
-
-### Profile
-![Profile](docs/screenshots/profile.png)
 ## Architecture
 
 FitTrack uses a client-server architecture with separate desktop and backend modules.
@@ -115,7 +126,8 @@ OOP-Project/
 │   ├── pom.xml
 │   ├── mvnw
 │   └── mvnw.cmd
-├── docs/screenshots/                       # Application screenshots (to be added)
+├── docs/
+│   └── screenshots/
 └── README.md
 ```
 
@@ -213,7 +225,7 @@ The Windows installers are intended for download from the repository's [GitHub R
 
 Choose **one** of these alternatives. Both install the JavaFX desktop client and include a Java runtime, so a separate Java installation is not required for the installed client.
 
-The Spring Boot backend and PostgreSQL database are separate components. To use the installed client, a compatible backend must be running and accessible at the address configured in the application.
+The Spring Boot backend and PostgreSQL database are separate components. The installed desktop client currently connects to the backend at `http://127.0.0.1:8080`, so the backend must be running locally for the application to function.
 
 ## Future Improvements
 
