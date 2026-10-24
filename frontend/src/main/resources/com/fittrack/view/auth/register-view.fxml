@@ -59,7 +59,7 @@
                         <!-- Subtitle -->
                         <Label maxWidth="Infinity"
                                styleClass="subtitle-label"
-                               text="Create your account to track workouts, nutrition and weight."
+                               text="Track your nutrition, weight, and body measurements."
                                textAlignment="CENTER"
                                wrapText="true"/>
 
