@@ -112,7 +112,7 @@ The frontend handles navigation, UI state, input, and HTTP communication. The ba
 ## Project Structure
 
 ```text
-OOP-Project/
+FitTrack/
 ├── frontend/
 │   ├── src/main/java/com/fittrack/         # JavaFX client
 │   ├── src/main/resources/                 # FXML, CSS, images, fonts
@@ -144,8 +144,8 @@ Maven does not need to be installed separately; both modules include the Maven W
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Arandjeloviicc/OOP-Project.git
-cd OOP-Project
+git clone https://github.com/Arandjeloviicc/FitTrack.git
+cd FitTrack
 ```
 
 ### 2. Prepare the Database
@@ -218,7 +218,7 @@ The desktop client connects to the local backend. Keep the backend running while
 
 ## Windows Installation
 
-The Windows installers are intended for download from the repository's [GitHub Releases](https://github.com/Arandjeloviicc/OOP-Project/releases) page:
+The Windows installers are intended for download from the repository's [GitHub Releases](https://github.com/Arandjeloviicc/FitTrack/releases) page:
 
 - **`FitTrack-1.0.0.exe`** — Windows executable installer
 - **`FitTrack-1.0.0.msi`** — Windows Installer package
